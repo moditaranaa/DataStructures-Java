@@ -44,13 +44,13 @@ public class BST {
        root = insert(root, x);
        size ++;
    }
-   private static int largest(BinaryTreeNode<Integer> root){
+   private static int minimum(BinaryTreeNode<Integer> root){
        if (root == null){
-           return Integer.MIN_VALUE;
+           return Integer.MAX_VALUE;
        }
-       int largestLeft = largest(root.left);
-       int largestRight = largest (root.right);
-       return Math.max(root.data, Math.max(largestLeft, largestRight));
+       int minLeft = minimum(root.left);
+       int minRight = minimum (root.right);
+       return Math.min(root.data, Math.min(minLeft, minRight));
    }
    private static BSTDeleteReturn deleteDataHelper(BinaryTreeNode<Integer> root, int x) {
        if (root == null) {
@@ -82,9 +82,9 @@ public class BST {
            return new BSTDeleteReturn(root.right, true);
        }
        // both children are present
-       int rightMax = largest(root.right);
-       root.data = rightMax;
-       BSTDeleteReturn outputRight = deleteDataHelper(root.right, rightMax);
+       int rightMin = minimum(root.right);
+       root.data = rightMin;
+       BSTDeleteReturn outputRight = deleteDataHelper(root.right, rightMin);
        root.right = outputRight.root;
        return new BSTDeleteReturn(root.right, true);
    }

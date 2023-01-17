@@ -1,12 +1,13 @@
 package Recursion;
 
 import java.util.Scanner;
-
+//Using start and end index to check if the array is sorted.
 public class sortedArray {
     public static boolean checkSortedArray(int arr[], int start, int end){
         if (arr.length == 0){
             return true;
         }
+        //end = arr.length -1
         if(start == end){
             return true;
         }
